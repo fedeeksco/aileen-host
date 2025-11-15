@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="icon" href="assets/favicon@5x.png" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis XV años - Aileen Wood</title>
+<style>
+  /* Reset y scroll largo */
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 200vh;
+    font-family: sans-serif;
+    color: #fff;
+  }
+
+  /* Fondo fijo con gradiente o imagen */
+  body {
+    background-image: url('assets/fondo.webp');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  /* Fuente custom */
+  @font-face {
+    font-family: 'Wasted Vindey';
+    src: url('fonts/Wasted-Vindey.ttf') format('truetype');
+  }
+
+  /* Imagen central grande */
+  .imagen-centro {
+    display: block;
+    margin: 50px auto;
+    max-width: 120vh;
+    height: auto;
+  }
+
+  /* Contador */
+  #miCuentaRegresiva {
+    font-size: 4em;
+    text-align: center;
+    font-family: 'Wasted Vindey', monospace;
+    background: linear-gradient(90deg, #E2AB20, #986F15);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Contenido scrolleable */
+  .contenido {
+    display: block;
+    width: 50%;
+    min-width: 400px;
+    max-width: 100%;
+    margin: 50px auto;
+  }
+
+  /* Botón ubicación */
+  .ubi_boton {
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    width: 300px;
+    justify-content: center;
+    margin: 20px auto;
+  }
+
+  /* Fade-in */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-img {
+  width: 100%;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+  );
+}
+</style>
+</head>
+<body>
+
+  <img src="assets/portada.webp" alt="Imagen central" class="imagen-centro fade-in" style="width: 95%;">
+  <img src="assets/texto1.svg" class="fade-in" style="width: 70%; max-width: 500px; display: block; margin: 50px auto; margin-bottom: 100px;">
+
+  <div style="text-align: center; margin: 50px auto; color: black; margin-bottom: 100px" class="fade-in">
+    <div style="font-size: 3em; font-family: 'Wasted Vindey', monospace; margin-bottom: -15px;">Faltan</div>
+    <div id="miCuentaRegresiva" style="background: linear-gradient(90deg, #E2AB20, #986F15);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+         font-family: 'Wasted Vindey', monospace;
+         font-size: 12vw;
+         margin: 0;">Cargando...</div>
+    <div style="font-size: 3em; font-family: 'Wasted Vindey', monospace; margin-top: -15px; color: black;">para el gran momento!</div>
+  </div>
+
+<img src="assets/img1.jpg" style="display: block;
+    margin: 50px auto;
+    width: 100%;;
+    height: auto;"
+    class="fade-img" alt="">
+
+  <img src="assets/ubi.svg" alt="" class="contenido fade-in">
+  <a target="_blank" href="https://www.google.com/maps/place/Churrasqueria+Sul+Americana" class="fade-in">
+    <img class="ubi_boton" src="assets/ubi_boton.webp" alt="ubi_boton" style="margin-top: -30px; margin-bottom: 100px;">
+  </a>
+
+  <img src="assets/dresscode.svg" alt="" class="contenido fade-in" style="margin-top: 50px;">
+
+<img src="assets/Confirmar.svg" class="contenido fade-in">
+<div class="contenido fade-in">
+    <a target="_blank" href="https://wa.me/595984155616?text=Hola!%20Te%20habla%20%5Btu%20nombre%5D%2C%20quiero%20confirmar%20mi%20asistencia%20para%20los%20XV%20a%C3%B1os%20de%20Aileen%20Wood">
+        <img src="assets/confirmar boton.svg" class="ubi_boton" style="margin-top: -30px; margin-bottom: 100px;" alt="ie_boton">
+    </a>
+</div>   
+
+ <img src="assets/Regalos_1.svg" class="contenido fade-in" style="width: 80%;">
+
+<img src="assets/img2.png" style="display: block;
+    margin: 50px auto;
+    width: 100%;
+    height: auto;"
+    class="fade-img">
+
+   
+
+<script>
+  // Cuenta regresiva
+  const targetDate = new Date("December 20, 2025 20:00:00").getTime();
+  const countdownElem = document.getElementById("miCuentaRegresiva");
+
+  const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+          clearInterval(countdown);
+          countdownElem.innerHTML = "¡Llegó el gran día!";
+          return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdownElem.innerHTML =
+      days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+  }, 1000);
+
+  // Fade-in on scroll con retraso secuencial
+  const faders = document.querySelectorAll('.fade-in');
+
+  const appearOnScroll = () => {
+    faders.forEach((el, index) => {
+      const rect = el.getBoundingClientRect();
+      if(rect.top < window.innerHeight - 50){
+        // Aparece con retardo para que no sea todo al mismo tiempo
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, index * 150); // 150ms entre cada elemento
+      }
+    });
+  };
+
+  window.addEventListener('scroll', appearOnScroll);
+  window.addEventListener('load', appearOnScroll);
+</script>
+
+<audio id="musica" autoplay loop muted preload="auto">
+  <source src="assets/Knockin' On Heaven's Door - Guns N' Roses.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const audio = document.getElementById('musica');
+  audio.volume = 0.2;   // bajito
+  audio.muted = false;  // quita el mute después de arrancar
+</script>
+
+
+</body>
+</html>
