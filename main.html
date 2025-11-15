@@ -16,13 +16,13 @@
   }
 
   /* Fondo fijo con gradiente o imagen */
-  body {
+body {
     background-image: url('assets/fondo.webp');
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
+    background-attachment: scroll; /* o borrá esta línea */
+}
 
   /* Fuente custom */
   @font-face {
@@ -31,13 +31,13 @@
   }
 
   /* Imagen central grande */
-  .imagen-centro {
+.imagen-centro {
     display: block;
-    margin: 50px auto;
-    max-width: 120vh;
+    width: 100%;
+    max-width: 600px;
     height: auto;
-  }
-
+    margin: 50px auto;
+}
   /* Contador */
   #miCuentaRegresiva {
     font-size: 4em;
@@ -49,13 +49,11 @@
   }
 
   /* Contenido scrolleable */
-  .contenido {
-    display: block;
-    width: 50%;
-    min-width: 400px;
-    max-width: 100%;
+.contenido {
+    width: 90%;
+    max-width: 500px;
     margin: 50px auto;
-  }
+}
 
   /* Botón ubicación */
   .ubi_boton {
