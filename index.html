@@ -34,6 +34,9 @@
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
+    min-height: 100dvh;
+      height: 100vh;
+    height: 100dvh;
   }
 
   body {
@@ -79,12 +82,20 @@
     margin-bottom: 100px;
     white-space: nowrap;
     max-width: 90vw;
+    -webkit-text-size-adjust: 100%;
+  font-size: 1.5rem; /* o el tamaño exacto que querés */
+
   }
 
   .boton-dorado:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.25);
   }
+
+  body {
+  min-height: 100dvh;
+}
+
 
   .fade-img {
     width: 100%;
@@ -182,7 +193,7 @@
   <button class="boton-dorado" id="btnMusica">Escuchar Música</button>
 
   <div class="contenido" style="margin-bottom: 100px;">
-    <h5>He comprendido que tener cerca a las personas que quiero basta para ser feliz...</h5>
+    <h5>He comprendido que tener cerca a las personas que quiero basta para ser feliz, el tiempo seguirá su curso y estas palabras se perderán, pero el recuerdo de tu rescencia conmigo esta noche quedará conmigo para siempre.</h5>
   </div>
 
   <div style="color:black; margin-bottom:100px;">
