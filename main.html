@@ -5,17 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mis XV años - Aileen Wood</title>
   <link rel="icon" href="assets/favicon@5x.png" type="image/x-icon">
-  <meta property="og:title" content="Mis XV años - Aileen Wood">
-<meta property="og:description" content="Invitación oficial">
-<meta property="og:image" content="https://fedeeksco.github.io/aileen-host/img1.jpg">
-<meta property="og:url" content="https://fedeeksco.github.io/aileen-host/main.html">
-<meta property="og:type" content="website">
 
-<!-- Extra para WhatsApp -->
-<meta name="twitter:card" content="summary_large_image">
+  <meta property="og:title" content="Mis XV años - Aileen Wood">
+  <meta property="og:description" content="Invitación oficial">
+  <meta property="og:image" content="https://fedeeksco.github.io/aileen-host/img1.jpg">
+  <meta property="og:url" content="https://fedeeksco.github.io/aileen-host/main.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
 
 <style>
-  /* Reset */
   html, body {
     margin: 0;
     padding: 0;
@@ -87,7 +85,6 @@
     mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
   }
 
-  /* FADE GLOBAL ÚNICO */
   .fade-global {
     opacity: 0;
     transform: translateY(20px);
@@ -152,7 +149,7 @@
 <body>
 
   <img src="assets/portada.webp" class="imagen-centro" style="margin-top: 100px; margin-bottom: 100px;">
-  <button class="boton-dorado">Escuchar Música</button>
+  <button class="boton-dorado" id="btnMusica">Escuchar Música</button>
 
   <div class="contenido" style="margin-bottom: 100px;">
     <h3>Estás</h3>
@@ -193,66 +190,64 @@
   <img src="assets/img2.png" class="fade-img" style="margin:50px auto; width:100%;">
 
 
-  <!-- COUNTDOWN -->
-  <script>
-    const targetDate = new Date("December 20, 2025 20:00:00").getTime();
-    const countdownElem = document.getElementById("miCuentaRegresiva");
+<!-- COUNTDOWN -->
+<script>
+  const targetDate = new Date("December 20, 2025 19:30:00").getTime();
+  const countdownElem = document.getElementById("miCuentaRegresiva");
 
-    setInterval(() => {
-      const now = Date.now();
-      const distance = targetDate - now;
+  setInterval(() => {
+    const now = Date.now();
+    const distance = targetDate - now;
 
-      if (distance < 0) {
-        countdownElem.textContent = "¡Llegó el gran día!";
-        return;
-      }
-
-      const d = Math.floor(distance / 86400000);
-      const h = Math.floor((distance % 86400000) / 3600000);
-      const m = Math.floor((distance % 3600000) / 60000);
-      const s = Math.floor((distance % 60000) / 1000);
-
-      countdownElem.textContent = `${d}d ${h}h ${m}m ${s}s`;
-    }, 1000);
-  </script>
-
-
-  <!-- FADE GLOBAL PARA TODO EL BODY -->
-  <script>
-    const elementos = document.querySelectorAll('body *');
-
-    function activarFade() {
-      elementos.forEach((el, i) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 50) {
-          setTimeout(() => el.classList.add('visible'), i * 80);
-        }
-      });
+    if (distance < 0) {
+      countdownElem.textContent = "¡Llegó el gran día!";
+      return;
     }
 
-    elementos.forEach(el => el.classList.add('fade-global'));
+    const d = Math.floor(distance / 86400000);
+    const h = Math.floor((distance % 86400000) / 3600000);
+    const m = Math.floor((distance % 3600000) / 60000);
+    const s = Math.floor((distance % 60000) / 1000);
 
-    window.addEventListener('load', activarFade);
-    window.addEventListener('scroll', activarFade);
-  </script>
+    countdownElem.textContent = `${d}d ${h}h ${m}m ${s}s`;
+  }, 1000);
+</script>
 
+<!-- FADE -->
+<script>
+  const elementos = document.querySelectorAll('body *');
 
-  <!-- AUDIO -->
-  <audio id="musica" autoplay loop muted preload="auto">
-    <source src="assets/Knockin' On Heaven's Door - Guns N' Roses.mp3" type="audio/mpeg">
-  </audio>
+  function activarFade() {
+    elementos.forEach((el, i) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 50) {
+        setTimeout(() => el.classList.add('visible'), i * 10);
+      }
+    });
+  }
 
-  <script>
-    const audio = document.getElementById('musica');
-    audio.volume = 0.2;
+  elementos.forEach(el => el.classList.add('fade-global'));
 
-    document.addEventListener('click', function() {
-        if (audio.muted) {
-            audio.muted = false;
-            audio.play().catch(e => console.log('El audio no pudo reproducirse automáticamente:', e));
-        }
-    }, { once: true });
-  </script>
+  window.addEventListener('load', activarFade);
+  window.addEventListener('scroll', activarFade);
+</script>
+
+<!-- AUDIO CONTROLADO POR EL BOTÓN -->
+<audio id="musica" loop preload="auto">
+  <source src="assets/Knockin' On Heaven's Door - Guns N' Roses.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const audio = document.getElementById('musica');
+  const btnMusica = document.getElementById('btnMusica');
+
+  audio.volume = 0.2;
+
+  btnMusica.addEventListener('click', () => {
+    audio.muted = false;
+    audio.play().catch(() => {});
+  });
+</script>
 
 </body>
 </html>
