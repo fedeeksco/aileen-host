@@ -1,198 +1,250 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis XV años - Aileen Wood</title>
   <link rel="icon" href="assets/favicon@5x.png" type="image/x-icon">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mis XV años - Aileen Wood</title>
+
 <style>
-  /* Reset y scroll largo */
+  /* Reset */
   html, body {
     margin: 0;
     padding: 0;
-    min-height: 200vh;
     font-family: sans-serif;
     color: #fff;
   }
 
-  /* Fondo fijo con gradiente o imagen */
-body {
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
     background-image: url('assets/fondo.webp');
     background-size: cover;
-    background-position: top center;
+    background-position: center;
     background-repeat: no-repeat;
-    background-attachment: scroll; /* o borrá esta línea */
-}
+    z-index: -1;
+  }
 
-  /* Fuente custom */
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
   @font-face {
     font-family: 'Wasted Vindey';
     src: url('fonts/Wasted-Vindey.ttf') format('truetype');
   }
 
-  /* Imagen central grande */
-.imagen-centro {
-    display: block;
+  @font-face {
+    font-family: 'Rustic Roadway';
+    src: url('fonts/rustic-roadway-personal-use.regular.otf') format('opentype');
+  }
+
+  .contenido {
     width: 100%;
-    max-width: 600px;
-    height: auto;
-    margin: 50px auto;
-}
-  /* Contador */
-  #miCuentaRegresiva {
-    font-size: 4em;
-    text-align: center;
-    font-family: 'Wasted Vindey', monospace;
-    background: linear-gradient(90deg, #E2AB20, #986F15);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    max-width: 90%;
+    padding: 0 10px;
   }
 
-  /* Contenido scrolleable */
-.contenido {
+  .imagen-centro {
     width: 90%;
-    max-width: 500px;
-    margin: 50px auto;
-}
-
-  /* Botón ubicación */
-  .ubi_boton {
-    display: flex;
-    align-items: center;
-    max-width: 500px;
-    width: 300px;
-    justify-content: center;
-    margin: 20px auto;
   }
 
-  /* Fade-in */
-  .fade-in {
+  .boton-dorado {
+    background: linear-gradient(90deg, #E2AB20, #986F15);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 40px;
+    font-family: 'Wasted Vindey', sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    margin: -30px;
+    margin-bottom: 100px;
+  }
+
+  .boton-dorado:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  }
+
+  .fade-img {
+    width: 100%;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+
+  /* FADE GLOBAL ÚNICO */
+  .fade-global {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition: opacity .8s ease-out, transform .8s ease-out;
   }
 
-  .fade-in.visible {
+  .fade-global.visible {
     opacity: 1;
     transform: translateY(0);
   }
 
-  .fade-img {
-  width: 100%;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 20%,
-    black 80%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 20%,
-    black 80%,
-    transparent
-  );
-}
+  h1, h3, h5 {
+    font-weight: normal;
+  }
+
+  h3 {
+    font-family: 'Wasted Vindey', sans-serif;
+    font-size: clamp(24px, 6vw, 48px);
+    margin: 0;
+    color: black;
+  }
+
+  h5 {
+    font-family: 'Wasted Vindey', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    line-height: clamp(1.3, 2.5vw, 2);
+    margin: 0;
+    color: black;
+    text-align: justify;
+  }
+
+  .texto-dorado {
+    font-family: 'Rustic Roadway', sans-serif;
+    font-size: clamp(40px, 10vw, 100px);
+    background: linear-gradient(135deg, #986F15 0%, #E2AB20 50%, #986F15 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .cuenta-texto {
+    font-family: 'Wasted Vindey', sans-serif;
+    font-size: clamp(28px, 8vw, 64px);
+    color: black;
+  }
+
+  #miCuentaRegresiva {
+    font-family: 'Wasted Vindey', sans-serif;
+    background: linear-gradient(90deg, #E2AB20, #986F15);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: clamp(28px, 12vw, 120px);
+    margin: 0;
+    line-height: 1;
+    white-space: nowrap;
+  }
 </style>
 </head>
+
 <body>
 
-  <img src="assets/portada.webp" alt="Imagen central" class="imagen-centro fade-in" style="width: 95%;">
-  <img src="assets/texto1.svg" class="fade-in" style="width: 70%; max-width: 500px; display: block; margin: 50px auto; margin-bottom: 100px;">
+  <img src="assets/portada.webp" class="imagen-centro" style="margin-top: 100px; margin-bottom: 100px;">
+  <button class="boton-dorado">Escuchar Música</button>
 
-  <div style="text-align: center; margin: 50px auto; color: black; margin-bottom: 100px" class="fade-in">
-    <div style="font-size: 3em; font-family: 'Wasted Vindey', monospace; margin-bottom: -15px;">Faltan</div>
-    <div id="miCuentaRegresiva" style="background: linear-gradient(90deg, #E2AB20, #986F15);
-         -webkit-background-clip: text;
-         -webkit-text-fill-color: transparent;
-         font-family: 'Wasted Vindey', monospace;
-         font-size: 12vw;
-         margin: 0;">Cargando...</div>
-    <div style="font-size: 3em; font-family: 'Wasted Vindey', monospace; margin-top: -15px; color: black;">para el gran momento!</div>
+  <div class="contenido" style="margin-bottom: 100px;">
+    <h3>Estás</h3>
+    <h1 class="texto-dorado" style="font-size: 14vw;">Invitado/a</h1>
+    <h5>He comprendido que tener cerca a las personas que quiero basta para ser feliz. El tiempo seguirá su curso y estas palabras se perderán, pero el recuerdo de tu prescencia esta noche quedará conmigo para siempre.</h5>
   </div>
 
-<img src="assets/img1.jpg" style="display: block;
-    margin: 50px auto;
-    width: 100%;;
-    height: auto;"
-    class="fade-img" alt="">
+  <div style="color:black; margin-bottom:100px;">
+    <div class="cuenta-texto" style="margin-bottom:-10px;">Faltan</div>
+    <div id="miCuentaRegresiva">Cargando...</div>
+    <div class="cuenta-texto" style="margin-top:-15px;">para el gran momento!</div>
+  </div>
 
-  <img src="assets/ubi.svg" alt="" class="contenido fade-in">
-  <a target="_blank" href="https://www.google.com/maps/place/Churrasqueria+Sul+Americana" class="fade-in">
-    <img class="ubi_boton" src="assets/ubi_boton.webp" alt="ubi_boton" style="margin-top: -30px; margin-bottom: 100px;">
+  <img src="assets/img1.jpg" class="fade-img" style="margin:50px auto; width:100%;">
+
+  <h3 style="margin-top: 100px;">La fiesta será en la</h3>
+  <h1 class="texto-dorado" style="font-size: 11vw;">Churrasquería</h1>
+  <h1 class="texto-dorado" style="font-size: 11vw; margin-top: -10px;">Sul Americana</h1>
+  <h3 style="margin-bottom: 50px;">A las 19:30 hs</h3>
+
+  <a target="_blank" href="https://www.google.com/maps/place/Churrasqueria+Sul+Americana">
+    <button class="boton-dorado">Ver ubicación</button>
   </a>
 
-  <img src="assets/dresscode.svg" alt="" class="contenido fade-in" style="margin-top: 50px;">
+  <h3 style="margin-left: 70px;">Dress Code</h3>
+  <h1 class="texto-dorado" style="margin-bottom: 100px; font-size: 20vw; margin-top: -50px;">Elegante</h1>
 
-<img src="assets/Confirmar.svg" class="contenido fade-in">
-<div class="contenido fade-in">
-    <a target="_blank" href="https://wa.me/595984155616?text=Hola!%20Te%20habla%20%5Btu%20nombre%5D%2C%20quiero%20confirmar%20mi%20asistencia%20para%20los%20XV%20a%C3%B1os%20de%20Aileen%20Wood">
-        <img src="assets/confirmar boton.svg" class="ubi_boton" style="margin-top: -30px; margin-bottom: 100px;" alt="ie_boton">
-    </a>
-</div>   
+  <img src="assets/Confirmar icon.svg" class="contenido" style="width: 22vw;">
+  <h3 style="margin-bottom: 50px; margin-top: 10px; margin-left: 5%; margin-right: 5%;">Gracias por ser parte de este día tan especial!<br>Podés confirmar tu prescencia ingresando al siguiente link:</h3>
 
- <img src="assets/Regalos_1.svg" class="contenido fade-in" style="width: 80%;">
+  <a target="_blank" href="https://wa.me/595984155616?text=Hola!%20Te%20habla%20%5Btu%20nombre%5D%2C%20quiero%20confirmar%20mi%20asistencia%20para%20los%20XV%20años%20de%20Aileen%20Wood">
+    <button class="boton-dorado">Confirmar Prescencia</button>
+  </a>
 
-<img src="assets/img2.png" style="display: block;
-    margin: 50px auto;
-    width: 100%;
-    height: auto;"
-    class="fade-img">
+  <img src="assets/Regalo icon.svg" class="contenido" style="width: 22vw;">
+  <h3 style="margin-bottom: 50px; margin-top: 10px; margin-left: 5%; margin-right: 5%;">Si quieres dar un obsequio, aceptamos transferencia bancaria</h3>
 
-   
+  <img src="assets/img2.png" class="fade-img" style="margin:50px auto; width:100%;">
 
-<script>
-  // Cuenta regresiva
-  const targetDate = new Date("December 20, 2025 20:00:00").getTime();
-  const countdownElem = document.getElementById("miCuentaRegresiva");
 
-  const countdown = setInterval(() => {
-      const now = new Date().getTime();
+  <!-- COUNTDOWN -->
+  <script>
+    const targetDate = new Date("December 20, 2025 20:00:00").getTime();
+    const countdownElem = document.getElementById("miCuentaRegresiva");
+
+    setInterval(() => {
+      const now = Date.now();
       const distance = targetDate - now;
 
       if (distance < 0) {
-          clearInterval(countdown);
-          countdownElem.innerHTML = "¡Llegó el gran día!";
-          return;
+        countdownElem.textContent = "¡Llegó el gran día!";
+        return;
       }
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      countdownElem.innerHTML =
-      days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-  }, 1000);
 
-  // Fade-in on scroll con retraso secuencial
-  const faders = document.querySelectorAll('.fade-in');
+      const d = Math.floor(distance / 86400000);
+      const h = Math.floor((distance % 86400000) / 3600000);
+      const m = Math.floor((distance % 3600000) / 60000);
+      const s = Math.floor((distance % 60000) / 1000);
 
-  const appearOnScroll = () => {
-    faders.forEach((el, index) => {
-      const rect = el.getBoundingClientRect();
-      if(rect.top < window.innerHeight - 50){
-        // Aparece con retardo para que no sea todo al mismo tiempo
-        setTimeout(() => {
-          el.classList.add('visible');
-        }, index * 150); // 150ms entre cada elemento
-      }
-    });
-  };
+      countdownElem.textContent = `${d}d ${h}h ${m}m ${s}s`;
+    }, 1000);
+  </script>
 
-  window.addEventListener('scroll', appearOnScroll);
-  window.addEventListener('load', appearOnScroll);
-</script>
 
-<audio id="musica" autoplay loop muted preload="auto">
-  <source src="assets/Knockin' On Heaven's Door - Guns N' Roses.mp3" type="audio/mpeg">
-</audio>
+  <!-- FADE GLOBAL PARA TODO EL BODY -->
+  <script>
+    const elementos = document.querySelectorAll('body *');
 
-<script>
-  const audio = document.getElementById('musica');
-  audio.volume = 0.2;   // bajito
-  audio.muted = false;  // quita el mute después de arrancar
-</script>
+    function activarFade() {
+      elementos.forEach((el, i) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+          setTimeout(() => el.classList.add('visible'), i * 80);
+        }
+      });
+    }
 
+    elementos.forEach(el => el.classList.add('fade-global'));
+
+    window.addEventListener('load', activarFade);
+    window.addEventListener('scroll', activarFade);
+  </script>
+
+
+  <!-- AUDIO -->
+  <audio id="musica" autoplay loop muted preload="auto">
+    <source src="assets/Knockin' On Heaven's Door - Guns N' Roses.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById('musica');
+    audio.volume = 0.2;
+
+    document.addEventListener('click', function() {
+        if (audio.muted) {
+            audio.muted = false;
+            audio.play().catch(e => console.log('El audio no pudo reproducirse automáticamente:', e));
+        }
+    }, { once: true });
+  </script>
 
 </body>
 </html>
